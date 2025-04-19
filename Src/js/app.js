@@ -7,15 +7,15 @@ const searchInput = document.querySelector("#search");
 const searchBtn = document.querySelector("#searchbtn");
 const content = document.querySelector("#content");
 const weatherBackgrounds = {
-    Clear: "url(../../assets/videos/clear.gif)",
-    Cloudy: "url(../../assets/videos/cloudy.gif)",
-    Rain: "url(../../assets/videos/rain.gif)",
-    Snow: "url(../../assets/videos/snow.gif)",
-    Thunderstorm: "url(../../assets/videos/thunderstorm.gif)",
-    Fog: "url(../../assets/videos/fog.gif)",
-    Mist: "url(../../assets/videos/mist.gif)",
-    Overcast: "url(../../assets/videos/overcast.gif)",
-    default: "url(../../assets/images/banner.png)",
+    Clear: "url(./assets/videos/clear.gif)",
+    Cloudy: "url(./assets/videos/cloudy.gif)",
+    Rain: "url(./assets/videos/rain.gif)",
+    Snow: "url(./assets/videos/snow.gif)",
+    Thunderstorm: "url(./assets/videos/thunderstorm.gif)",
+    Fog: "url(./assets/videos/fog.gif)",
+    Mist: "url(./assets/videos/mist.gif)",
+    Overcast: "url(./assets/videos/overcast.gif)",
+    default: "url(./assets/images/banner.png)"
 };
 
 let apiKey = "a1c77ba7a1894494a91163636251604";
