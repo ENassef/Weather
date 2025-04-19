@@ -1,0 +1,68 @@
+:root{
+    --main-color : #1E202B;
+    --secondaru-color :#009AD8;
+}
+
+.navbar {
+    background-color: var(--main-color);
+}
+
+.content {
+    background-image: url(../../assets/images/banner.png);
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-block: 72px;
+    min-height: 100vh;
+    transition: all 1s linear;
+}
+
+.input-group input {
+    background-color : var(--main-color);
+    outline: none;
+    border: none;
+    padding-block: 10px;
+    padding-left: 20px;
+    border-radius: 20px;
+    color: white;
+}
+
+.input-group input:focus {
+    background-color : var(--main-color);
+    outline: none;
+    border: none;
+    padding-block: 10px;
+    border-radius: 20px;
+    color: white;
+
+}
+
+.input-group button {
+    border-radius: 0 20px 20px 0;
+}
+
+.weather-row {
+    background-color: var(--main-color);
+    margin-top: 80px;
+    border-radius: 20px;
+    color: white;
+}
+
+/* Target the .col-lg-4 elements instead */
+.weather-row .col-lg-4:nth-child(odd) .inner {
+    padding: 20px;
+    background-color: #323544;
+}
+
+.weather-row .col-lg-4:nth-child(even) .inner {
+    padding: 20px;
+    background-color: #262936;
+}
+
+.weather-row .title{
+    background-color: #2D303D;
+}
+
+.deg {
+    font-size: 5rem;
+}
