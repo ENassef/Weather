@@ -3,6 +3,10 @@
     --secondaru-color :#009AD8;
 }
 
+*{
+    text-transform: capitalize;
+}
+
 .navbar {
     background-color: var(--main-color);
 }

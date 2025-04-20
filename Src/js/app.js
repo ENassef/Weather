@@ -6,6 +6,8 @@ const weatherHtml = document.querySelector("#weather-row");
 const searchInput = document.querySelector("#search");
 const searchBtn = document.querySelector("#searchbtn");
 const content = document.querySelector("#content");
+const tempCBtn = document.querySelector('#tempc');
+const tempFBtn = document.querySelector('#tempf');
 const weatherBackgrounds = {
     Clear: "url(./assets/videos/clear.gif)",
     Cloudy: "url(./assets/videos/cloudy.gif)",
@@ -17,6 +19,10 @@ const weatherBackgrounds = {
     Overcast: "url(./assets/videos/overcast.gif)",
     default: "url(./assets/images/banner.png)"
 };
+
+let cord ;
+
+let tempDegCalc =  'c' ;
 
 let apiKey = "a1c77ba7a1894494a91163636251604";
 
@@ -55,7 +61,7 @@ const month = new Date().getMonth();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                const cord = {
+                cord = {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                 };
@@ -124,7 +130,7 @@ async function weatherData(key, searchValue) {
         searchValue.longitude
     ) {
         apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${searchValue.latitude},${searchValue.longitude}&days=3`;
-    } else {
+    }else {
         searchValue = searchValue || "cairo";
         apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${searchValue}&days=3`;
     }
@@ -143,8 +149,19 @@ async function weatherData(key, searchValue) {
         }
 
         let forecastDays = data.forecast.forecastday;
-
+        let dataCurrentTemp ;
+        let forecastDaysTemp ;
         for (let i = 0; i < forecastDays.length; i++) {
+
+            if (tempDegCalc == 'c'){
+                dataCurrentTemp = data.current.temp_c
+                forecastDaysTemp = forecastDays[i].day.maxtemp_c
+            }else if (tempDegCalc == 'f'){
+                dataCurrentTemp = data.current.temp_f
+                forecastDaysTemp = forecastDays[i].day.maxtemp_f
+            }
+            console.log(dataCurrentTemp,forecastDaysTemp);
+            
             cartnoa += `
                 <div class="col-lg-4 ps-0 pe-0 rounded">
                     <div class="title d-flex p-2 justify-content-between ps-3 pe-3">
@@ -154,10 +171,7 @@ async function weatherData(key, searchValue) {
                     <div class="inner">
                         <p class="fs-4">${data.location.name}</p>
                         <div id="heat">
-                            <p class="deg">${i == 0
-                    ? data.current.temp_c
-                    : forecastDays[i].day.maxtemp_c
-                } <sup>o</sup> C</p>
+                            <p class="deg">${i == 0 ? dataCurrentTemp : forecastDaysTemp} <sup>o</sup> ${tempDegCalc}</p>
                             <img src='${forecastDays[i].day.condition.icon
                 }' alt="">
                         </div>
@@ -221,3 +235,15 @@ searchBtn.addEventListener("click", function () {
             console.error("Failed to get weather data:", error);
         });
 });
+
+
+tempCBtn.addEventListener('click',function(){
+    tempDegCalc = 'c'
+    
+    weatherData(apiKey , searchInput == "" ? cord : searchInput.value)
+})
+tempFBtn.addEventListener('click',function(){
+    tempDegCalc = 'f'
+    weatherData(apiKey , searchInput == "" ? cord : searchInput.value)
+
+})
