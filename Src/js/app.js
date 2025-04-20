@@ -89,32 +89,32 @@ function updateBackground(conditionText) {
     switch (true) {
         case condition.includes("clear"):
         case condition.includes("sunny"):
-            backgroundKey = "Clear"; // Assign Clear background
+            backgroundKey = "Clear"; 
             break;
         case condition.includes("cloud"):
-            backgroundKey = "Cloudy"; // Assign Cloudy background
+            backgroundKey = "Cloudy";
             break;
         case condition.includes("rain"):
         case condition.includes("shower"):
-            backgroundKey = "Rain"; // Assign Rain background
+            backgroundKey = "Rain";
             break;
         case condition.includes("snow"):
-            backgroundKey = "Snow"; // Assign Snow background
+            backgroundKey = "Snow";
             break;
         case condition.includes("thunder"):
         case condition.includes("storm"):
-            backgroundKey = "Thunderstorm"; // Assign Thunderstorm background
+            backgroundKey = "Thunderstorm"; 
             break;
         case condition.includes("fog"):
-            backgroundKey = "Fog"; // Assign Fog background
+            backgroundKey = "Fog"; 
         case condition.includes("mist"):
-            backgroundKey = "Mist"; // Assign Fog background
+            backgroundKey = "Mist"; 
             break;
         case condition.includes("overcast"):
-            backgroundKey = "Overcast"; // Assign Overcast background
+            backgroundKey = "Overcast"; 
             break;
         default:
-            backgroundKey = "default"; // Assign default background
+            backgroundKey = "default";
             break;
     }
 
@@ -241,13 +241,15 @@ searchBtn.addEventListener("click", function () {
 tempCBtn.addEventListener('click',function(){
     tempDegCalc = 'c'
     sessionStorage.setItem('tempDegCalc' , tempDegCalc)
-
+    tempCBtn.classList.add('btn-primary')
+    tempFBtn.classList.remove('btn-primary')
     weatherData(apiKey , searchInput == "" ? cord : searchInput.value)
 })
 tempFBtn.addEventListener('click',function(){
     tempDegCalc = 'f'
     sessionStorage.setItem('tempDegCalc' , tempDegCalc)
-
+    tempFBtn.classList.add('btn-primary')
+    tempCBtn.classList.remove('btn-primary')
     weatherData(apiKey , searchInput == "" ? cord : searchInput.value)
 
 })
