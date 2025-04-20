@@ -22,7 +22,9 @@ const weatherBackgrounds = {
 
 let cord ;
 
-let tempDegCalc =  'c' ;
+let tempDegCalc = sessionStorage.getItem('tempDegCalc') || 'c'
+
+sessionStorage.setItem('tempDegCalc' , tempDegCalc)
 
 let apiKey = "a1c77ba7a1894494a91163636251604";
 
@@ -174,6 +176,7 @@ async function weatherData(key, searchValue) {
                             <p class="deg">${i == 0 ? dataCurrentTemp : forecastDaysTemp} <sup>o</sup> ${tempDegCalc}</p>
                             <img src='${forecastDays[i].day.condition.icon
                 }' alt="">
+                            <p>Feels like </p>
                         </div>
                         <p id="weather-status" class="text-primary fs-5 mt-2">${forecastDays[i].day.condition.text
                 }</p>
@@ -203,8 +206,7 @@ async function weatherData(key, searchValue) {
         return forecastDays;
     } catch (error) {
         console.error("Error fetching weather data:", error);
-        // weatherHtml.innerHTML = `<div class="col-12 text-center">Failed to load weather data. Please try again.</div>`;
-        throw error;
+        // throw error;
     }
 }
 
@@ -239,11 +241,14 @@ searchBtn.addEventListener("click", function () {
 
 tempCBtn.addEventListener('click',function(){
     tempDegCalc = 'c'
-    
+    sessionStorage.setItem('tempDegCalc' , tempDegCalc)
+
     weatherData(apiKey , searchInput == "" ? cord : searchInput.value)
 })
 tempFBtn.addEventListener('click',function(){
     tempDegCalc = 'f'
+    sessionStorage.setItem('tempDegCalc' , tempDegCalc)
+
     weatherData(apiKey , searchInput == "" ? cord : searchInput.value)
 
 })
