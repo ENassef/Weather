@@ -176,7 +176,6 @@ async function weatherData(key, searchValue) {
                             <p class="deg">${i == 0 ? dataCurrentTemp : forecastDaysTemp} <sup>o</sup> ${tempDegCalc}</p>
                             <img src='${forecastDays[i].day.condition.icon
                 }' alt="">
-                            <p>Feels like </p>
                         </div>
                         <p id="weather-status" class="text-primary fs-5 mt-2">${forecastDays[i].day.condition.text
                 }</p>
