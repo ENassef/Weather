@@ -158,9 +158,13 @@ async function weatherData(key, searchValue) {
             if (tempDegCalc == 'c'){
                 dataCurrentTemp = data.current.temp_c
                 forecastDaysTemp = forecastDays[i].day.maxtemp_c
+                tempCBtn.classList.add('btn-primary')
+                tempFBtn.classList.remove('btn-primary')
             }else if (tempDegCalc == 'f'){
                 dataCurrentTemp = data.current.temp_f
                 forecastDaysTemp = forecastDays[i].day.maxtemp_f
+                tempFBtn.classList.add('btn-primary')
+                tempCBtn.classList.remove('btn-primary')
             }
             console.log(dataCurrentTemp,forecastDaysTemp);
             
@@ -228,13 +232,27 @@ searchInput.addEventListener("input", function () {
 });
 
 searchBtn.addEventListener("click", function () {
-    weatherData(apiKey, searchInput.value)
-        .then((data) => {
-            console.log("Weather data received:", data);
-        })
-        .catch((error) => {
-            console.error("Failed to get weather data:", error);
-        });
+
+    if(searchInput.value == ''){
+        Toastify({
+            text: "Make Sure You Wrote a city Name Or a Country",
+            className: "info",
+            close: true,
+            style: {
+                background: "#1E202B",
+                color : 'white'
+            }
+        }).showToast();
+    }else{
+        weatherData(apiKey, searchInput.value)
+            .then((data) => {
+                console.log("Weather data received:", data);
+            })
+            .catch((error) => {
+                console.error("Failed to get weather data:", error);
+            });
+
+    }
 });
 
 
@@ -251,5 +269,5 @@ tempFBtn.addEventListener('click',function(){
     tempFBtn.classList.add('btn-primary')
     tempCBtn.classList.remove('btn-primary')
     weatherData(apiKey , searchInput == "" ? cord : searchInput.value)
-
 })
+

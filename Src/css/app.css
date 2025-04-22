@@ -70,3 +70,12 @@
 .deg {
     font-size: 3rem;
 }
+
+.btnTemp:nth-child(odd) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.btnTemp:nth-child(even) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
